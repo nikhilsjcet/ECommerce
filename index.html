@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina | Premium E-Commerce Experience</title>
+    <meta name="description" content="Explore a curated selection of premium electronics, fashion, and accessories on Lumina. Highly responsive experience with seamless filtering, dark mode, and an interactive shopping cart.">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- ==========================================
+             FIXED HEADER / NAVIGATION
+             ========================================== -->
+        <header>
+            <div class="container header-inner">
+                <!-- Brand Logo -->
+                <div class="logo" id="logo-trigger">
+                    Lumina<span class="logo-dot"></span>
+                </div>
+
+                <!-- Universal Search Bar -->
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </span>
+                    <input type="text" class="search-input" id="universal-search" placeholder="Search premium products...">
+                </div>
+
+                <!-- User Actions Buttons -->
+                <div class="nav-actions">
+                    <!-- Light/Dark Theme Switcher -->
+                    <button class="nav-btn" id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </button>
+
+                    <!-- Cart Trigger Button -->
+                    <button class="nav-btn" id="cart-btn" aria-label="View Shopping Cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        <span class="cart-badge" id="cart-badge-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==========================================
+             MAIN CONTENT LAYOUT
+             ========================================== -->
+        <main>
+            <div class="container">
+                
+                <!-- 1. HOME VIEW -->
+                <section class="view-section active animate-fade" id="home-view">
+                    <!-- Hero Showcase -->
+                    <div class="hero-section">
+                        <div class="hero-banner" id="hero-banner-element" style="background-image: url('assets/hero_banner.png');">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <span class="hero-badge">SUMMER COLLECTION 2026</span>
+                                <h1 class="hero-title">Experience Premium Living.</h1>
+                                <p class="hero-desc">Discover Lumina's futuristic catalog of designer items, from studio audio equipment to state-of-the-art apparel and luxury accessories.</p>
+                                <button class="btn-primary" id="explore-catalog-btn">
+                                    Browse All Products
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categories Showcase Grid -->
+                    <div>
+                        <div class="section-header">
+                            <div>
+                                <h2 class="section-title">Shop by Category</h2>
+                                <p class="section-subtitle">Curated items tailored exactly to your premium aesthetic preferences.</p>
+                            </div>
+                        </div>
+                        <div class="category-grid" id="home-categories-grid">
+                            <!-- Injected dynamically by app.js -->
+                        </div>
+                    </div>
+
+                    <!-- Trending / Highlights Grid -->
+                    <div>
+                        <div class="section-header">
+                            <div>
+                                <h2 class="section-title">Featured Highlights</h2>
+                                <p class="section-subtitle">Top rated models highly favored by our community of purveyors.</p>
+                            </div>
+                            <button class="btn-secondary" id="view-all-featured">View Catalog</button>
+                        </div>
+                        <div class="product-grid" id="featured-products-grid">
+                            <!-- Injected dynamically by app.js -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. CATALOG LISTING VIEW -->
+                <section class="view-section animate-fade" id="catalog-view">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title" id="catalog-title">Explore Store</h2>
+                            <p class="section-subtitle" id="catalog-subtitle">Find premium designs with comprehensive sorting and filtering.</p>
+                        </div>
+                        <!-- Back to categories trigger -->
+                        <button class="btn-secondary" id="back-to-home-btn" style="display: inline-flex; align-items: center; gap: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                            Back Home
+                        </button>
+                    </div>
+
+                    <div class="catalog-layout">
+                        <!-- Sidebar Filters Section -->
+                        <aside class="filters-sidebar">
+                            <!-- Category Selection -->
+                            <div class="filter-section">
+                                <h3 class="filter-title">Category</h3>
+                                <ul class="filter-options" id="category-filter-list">
+                                    <!-- Injected dynamically by app.js -->
+                                </ul>
+                            </div>
+
+                            <!-- Price Slider Filter -->
+                            <div class="filter-section">
+                                <h3 class="filter-title">Price Range</h3>
+                                <div class="price-range-wrapper">
+                                    <input type="range" class="price-slider" id="price-filter" min="0" max="80000" step="500" value="80000">
+                                    <div class="price-values">
+                                        <span>₹0</span>
+                                        <span id="price-slider-value" style="font-weight: 700; color: var(--accent);">₹80,000</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rating Filter -->
+                            <div class="filter-section">
+                                <h3 class="filter-title">Minimum Rating</h3>
+                                <ul class="filter-options">
+                                    <li class="filter-option">
+                                        <input type="radio" name="rating-filter" id="rating-all" value="all" checked>
+                                        <label for="rating-all">All Ratings</label>
+                                    </li>
+                                    <li class="filter-option">
+                                        <input type="radio" name="rating-filter" id="rating-4" value="4">
+                                        <label for="rating-4" style="display: flex; align-items: center; gap: 4px;">
+                                            4.0★ & Up
+                                        </label>
+                                    </li>
+                                    <li class="filter-option">
+                                        <input type="radio" name="rating-filter" id="rating-4.5" value="4.5">
+                                        <label for="rating-4.5" style="display: flex; align-items: center; gap: 4px;">
+                                            4.5★ & Up
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Reset Button -->
+                            <button class="btn-secondary" id="reset-filters-btn" style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+                                Clear All Filters
+                            </button>
+                        </aside>
+
+                        <!-- Product Display Area -->
+                        <div class="listing-container">
+                            <div class="listing-header">
+                                <span class="results-count" id="results-count-text">Showing 0 products</span>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <label for="catalog-sort" style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">Sort By</label>
+                                    <select class="sort-select" id="catalog-sort">
+                                        <option value="featured">Featured Picks</option>
+                                        <option value="price-low">Price: Low to High</option>
+                                        <option value="price-high">Price: High to Low</option>
+                                        <option value="rating">Highest Rated</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Main Grid -->
+                            <div class="product-grid" id="catalog-products-grid">
+                                <!-- Injected dynamically by app.js -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. PRODUCT DETAILS VIEW -->
+                <section class="view-section animate-fade" id="product-detail-view">
+                    <div class="section-header" style="margin-top: 24px; margin-bottom: 24px;">
+                        <button class="btn-secondary" id="back-to-catalog-btn" style="display: inline-flex; align-items: center; gap: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                            Back to Catalog
+                        </button>
+                    </div>
+
+                    <div class="details-view" id="product-details-container">
+                        <!-- Injected dynamically by app.js -->
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- ==========================================
+             FOOTER
+             ========================================== -->
+        <footer>
+            <div class="container footer-inner">
+                <div class="footer-text">
+                    &copy; 2026 Lumina Store Co. Built as a premium web engineering experience. All mock rights reserved.
+                </div>
+                <div class="footer-links">
+                    <a href="#" id="footer-home-link">Home</a>
+                    <a href="#" id="footer-catalog-link">Browse Products</a>
+                    <a href="https://github.com" target="_blank" rel="noopener">GitHub Project</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ==========================================
+             SLIDE-OUT CART DRAWER
+             ========================================== -->
+        <div class="cart-drawer-overlay" id="cart-overlay">
+            <div class="cart-drawer">
+                <!-- Header -->
+                <div class="cart-drawer-header">
+                    <h3 class="cart-drawer-title">Your Cart</h3>
+                    <button class="close-drawer-btn" id="close-cart-btn" aria-label="Close Cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+
+                <!-- Items Container -->
+                <div class="cart-items-list" id="cart-items-container">
+                    <!-- Injected dynamically by app.js -->
+                </div>
+
+                <!-- Summary & Checkout Footer -->
+                <div class="cart-drawer-footer" id="cart-footer-details" style="display: none;">
+                    <div class="cart-summary-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">₹0</span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Shipping</span>
+                        <span id="cart-shipping">₹0</span>
+                    </div>
+                    <div class="cart-summary-row total">
+                        <span>Estimated Total</span>
+                        <span id="cart-total">₹0</span>
+                    </div>
+                    <button class="checkout-btn" id="checkout-trigger-btn">
+                        Proceed to Checkout
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             CHECKOUT OVERLAY / SUCCESS DIALOG
+             ========================================== -->
+        <div class="checkout-overlay" id="checkout-overlay">
+            <div class="checkout-modal">
+                <div class="checkout-success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <h3 class="checkout-title">Purchase Successful!</h3>
+                <p class="checkout-desc">Your order is being processed with dynamic logistics. A mock receipt and tracking profile have been simulated.</p>
+                <button class="btn-primary" id="checkout-close-btn" style="width: 100%; display: flex; justify-content: center;">
+                    Awesome
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Core Javascript Code -->
+    <script src="app.js" defer></script>
+</body>
+</html>
